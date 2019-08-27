@@ -38,14 +38,30 @@ AddressBook.prototype.deleteContact = function(id) {
 }
 
 // Business Logic for Contacts ---------
-function Contact(firstName, lastName, phoneNumber) {
+function Contact(firstName, lastName, phoneNumber, address) {
   this.firstName = firstName,
   this.lastName = lastName,
   this.phoneNumber = phoneNumber
+  this.address = address
+  this.addresses = []
+
 }
 
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
+}
+
+// Business Logic for Addresses
+var address = new Address();
+
+function Address(type, address) {
+  this.type = type,
+  this.address = address
+}
+
+//?????
+Address.prototype.addAddress = function(address) {
+  this.addresses.push(address)
 }
 
 // User Interface Logic ---------
@@ -54,7 +70,7 @@ var addressBook = new AddressBook();
 function displayContactDetails(addressBookToDisplay) {
   var contactLists = $('ul#contacts');
   var htmlForContactInfo = '';
-  addressBookToDisplay.contacts.forEach(function(contact)) {
+  addressBookToDisplay.contacts.forEach(function(contact) {
     htmlforContactInfo += '<li id=' + contact.id + '>' + contact.firstName + ' ' + contact.lastName + '</li>';
   });
   contactsList.html(htmlForContactInfo);
